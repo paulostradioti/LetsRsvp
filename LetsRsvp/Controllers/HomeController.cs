@@ -1,4 +1,5 @@
 ﻿using LetsRsvp.Models;
+using LetsRsvp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -49,8 +50,28 @@ namespace LetsRsvp.Controllers
 
         public IActionResult Confirmados()
         {
-            var confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true);
+            //var confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true);
+            var viewModel = new ConfirmadosViewModel()
+            {
+                Confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true),
+                Search = string.Empty
+            };
 
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Confirmados(ConfirmadosViewModel viewModel)
+        { 
+            viewModel.Confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true);
+
+            return View(viewModel);
+        }
+
+
+        public IActionResult NumeroDeConvidados()
+        { 
+            var confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true);
             return View(confirmados);
         }
     }

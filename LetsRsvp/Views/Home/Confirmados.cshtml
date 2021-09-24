@@ -1,6 +1,15 @@
-﻿@model IEnumerable<Confirmacao>
+﻿@model ConfirmadosViewModel
 
-@foreach (var confirmacao in Model)
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Search"></label>
+        <input asp-for="Search" />
+        <input type="submit" class="btn btn-outline-primary" />
+    </div>
+</form>
+
+@foreach (var confirmacao in Model.Confirmados)
 {
-    <div>@confirmacao.Nome</div>
+    var cssClass = !string.IsNullOrWhiteSpace(Model.Search) && confirmacao.Nome.Contains(Model.Search, StringComparison.InvariantCultureIgnoreCase) ? "text-info" : "";
+    <div class="@cssClass">@confirmacao.Nome</div>
 }
