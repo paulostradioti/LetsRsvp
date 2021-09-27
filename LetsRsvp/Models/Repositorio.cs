@@ -2,44 +2,26 @@
 
 namespace LetsRsvp.Models
 {
-    public static class Repositorio
+    public class Repositorio : IRepositorio
     {
-        private static List<Confirmacao> confirmacoes = new List<Confirmacao>()
+        private readonly AppDbContext _context;
+
+        public Repositorio(AppDbContext context)
         {
-            new Confirmacao
-            {
-                Nome = "Paulo Ricardo Stradioti",
-                Telefone = "11 960822400",
-                Confirmado = true
-            },
+            _context = context;
+        }
 
-            new Confirmacao
-            {
-                Nome = "Luiz Augusto",
-                Telefone = "11 123456789",
-                Confirmado = true
-            },
+        public IEnumerable<Confirmacao> Confirmacoes { get => _context.Confirmacoes; }
 
-            new Confirmacao
-            {
-                Nome = "Betina Rudolph",
-                Telefone = "11 123456789",
-                Confirmado = true
-            },
-
-            new Confirmacao
-            {
-                Nome = "Sofia Bernardino",
-                Telefone = "11 123456789",
-                Confirmado = true
-            },
-        };
-
-        public static IEnumerable<Confirmacao> Confirmacoes { get => confirmacoes; }
-
-        public static void AdicionaConfirmacao(Confirmacao confirmacao)
+        public void AdicionaConfirmacao(Confirmacao confirmacao)
         {
-            confirmacoes.Add(confirmacao);
+
+            _context.Confirmacoes.Add(confirmacao);
+
+            if (string.IsNullOrEmpty(confirmacao.Acompanhante))
+                confirmacao.Acompanhante = "Sem Acompanhantes";
+            
+            _context.SaveChanges();
         }
     }
 }

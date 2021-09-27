@@ -13,12 +13,14 @@ namespace LetsRsvp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepositorio _repositorio;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRepositorio repositorio)
         {
             _logger = logger;
+            _repositorio = repositorio;
         }
-
+        
         public IActionResult Index()
         {
             return View();
@@ -37,11 +39,10 @@ namespace LetsRsvp.Controllers
         [HttpPost]
         public IActionResult Confirmar(Confirmacao confirmacao)
         {
-
-            //if (confirmacao.Confirmado != null)
+            
             if (ModelState.IsValid)
             {
-                Repositorio.AdicionaConfirmacao(confirmacao);
+                _repositorio.AdicionaConfirmacao(confirmacao);
                 return RedirectToAction("Index");
             }
 
@@ -50,10 +51,9 @@ namespace LetsRsvp.Controllers
 
         public IActionResult Confirmados()
         {
-            //var confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true);
             var viewModel = new ConfirmadosViewModel()
             {
-                Confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true),
+                Confirmados = _repositorio.Confirmacoes,
                 Search = string.Empty
             };
 
@@ -63,7 +63,7 @@ namespace LetsRsvp.Controllers
         [HttpPost]
         public IActionResult Confirmados(ConfirmadosViewModel viewModel)
         { 
-            viewModel.Confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true);
+            viewModel.Confirmados = _repositorio.Confirmacoes;
 
             return View(viewModel);
         }
@@ -71,7 +71,7 @@ namespace LetsRsvp.Controllers
 
         public IActionResult NumeroDeConvidados()
         { 
-            var confirmados = Repositorio.Confirmacoes.Where(x => x.Confirmado == true);
+            var confirmados = _repositorio.Confirmacoes.Where(x => x.Confirmado == true);
             return View(confirmados);
         }
     }

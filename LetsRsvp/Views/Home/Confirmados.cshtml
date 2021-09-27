@@ -11,5 +11,6 @@
 @foreach (var confirmacao in Model.Confirmados)
 {
     var cssClass = !string.IsNullOrWhiteSpace(Model.Search) && confirmacao.Nome.Contains(Model.Search, StringComparison.InvariantCultureIgnoreCase) ? "text-info" : "";
-    <div class="@cssClass">@confirmacao.Nome</div>
+    var cssConfirmacao = confirmacao.Confirmado == true ? "text-primary" : "text-danger";
+    <div class="@cssClass @cssConfirmacao">@confirmacao.Nome</div>
 }

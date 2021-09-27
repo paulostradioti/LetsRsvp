@@ -24,6 +24,8 @@ namespace LetsRsvp
 
             services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddScoped<IRepositorio, Repositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
