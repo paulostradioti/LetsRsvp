@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,5 +19,8 @@ namespace LetsRsvp.Models
 
         [Required(ErrorMessage = "A confirmação é obrigatória")]
         public bool? Confirmado { get; set; }
+
+        [DisplayName("Digite o nome do(a) acompanhante")]
+        public string Acompanhante { get; set; }
     }
 }
