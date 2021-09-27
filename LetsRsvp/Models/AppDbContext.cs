@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LetsRsvp.Models
 {
-    public class PauloDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public PauloDbContext(DbContextOptions<PauloDbContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
 
