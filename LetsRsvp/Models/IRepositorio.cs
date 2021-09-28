@@ -9,5 +9,6 @@ namespace LetsRsvp.Models
     {
         IEnumerable<Confirmacao> Confirmacoes { get; }
         void AdicionaConfirmacao(Confirmacao confirmacao);
+        void Update(Confirmacao confirmacao);
     }
 }

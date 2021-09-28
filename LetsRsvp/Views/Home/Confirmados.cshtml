@@ -12,5 +12,9 @@
 {
     var cssClass = !string.IsNullOrWhiteSpace(Model.Search) && confirmacao.Nome.Contains(Model.Search, StringComparison.InvariantCultureIgnoreCase) ? "text-info" : "";
     var cssConfirmacao = confirmacao.Confirmado == true ? "text-primary" : "text-danger";
-    <div class="@cssClass @cssConfirmacao">@confirmacao.Nome</div>
+
+    <div>
+        <span class="@cssClass @cssConfirmacao">@confirmacao.Nome</span>
+        <a asp-action="Edicao" asp-controller="Home" asp-route-Id="@confirmacao.Id">Editar</a>
+    </div>
 }

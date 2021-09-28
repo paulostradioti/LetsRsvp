@@ -23,5 +23,11 @@ namespace LetsRsvp.Models
             
             _context.SaveChanges();
         }
+
+        public void Update(Confirmacao confirmacao)
+        {
+            _context.Confirmacoes.Update(confirmacao);
+            _context.SaveChanges();
+        }
     }
 }
