@@ -12,6 +12,6 @@ namespace LetsRsvp.Models
         {
         }
 
-        public DbSet<Confirmacao> Confirmacoes { get; set; }
+      public DbSet<Confirmacao> Confirmacoes { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace LetsRsvp.Models
 {
     public interface IRepositorio
     {
-        IEnumerable<Confirmacao> Confirmacoes { get; }
+        IQueryable<Confirmacao> Confirmacoes { get; }
         void AdicionaConfirmacao(Confirmacao confirmacao);
         void Update(Confirmacao confirmacao);
         void Remove(Confirmacao confirmacao);

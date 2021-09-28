@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace LetsRsvp.Models
 {
@@ -11,7 +12,7 @@ namespace LetsRsvp.Models
             _context = context;
         }
 
-        public IEnumerable<Confirmacao> Confirmacoes { get => _context.Confirmacoes; }
+        public IQueryable<Confirmacao> Confirmacoes { get => _context.Confirmacoes; }
 
         public void AdicionaConfirmacao(Confirmacao confirmacao)
         {
