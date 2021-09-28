@@ -29,5 +29,11 @@ namespace LetsRsvp.Models
             _context.Confirmacoes.Update(confirmacao);
             _context.SaveChanges();
         }
+
+        public void Remove(Confirmacao confirmacao)
+        {
+            _context.Confirmacoes.Remove(confirmacao);
+            _context.SaveChanges();
+        }
     }
 }

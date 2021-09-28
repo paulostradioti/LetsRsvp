@@ -1,3 +1,4 @@
+using System;
 using LetsRsvp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace LetsRsvp
 {
@@ -23,7 +25,11 @@ namespace LetsRsvp
             var connectionString = Configuration.GetConnectionString("ConexaoPadrao");
 
             services.AddControllersWithViews();
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(connectionString);
+                options.LogTo(Console.WriteLine, LogLevel.Debug);
+            });
 
             services.AddScoped<IRepositorio, Repositorio>();
         }

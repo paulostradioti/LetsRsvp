@@ -1,0 +1,30 @@
+﻿@model Confirmacao
+
+<h1>Removendo Confirmação</h1>
+
+<form method="post" asp-controller="Home" asp-action="Remocao">
+
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="Nome">Digite seu Nome</label>
+        <input asp-for="Nome" disabled/>
+        <span asp-validation-for="Nome"></span>
+    </div>
+
+    <div>
+        <label asp-for="Telefone">Digite seu Telefone</label>
+        <input asp-for="Telefone" disabled/>
+        <span asp-validation-for="Telefone"></span>
+    </div>
+    <div>
+        <label asp-for="Confirmado">Você poderá comparecer?</label>
+        <select asp-for="Confirmado"  disabled>
+            <option value="">Escolha a opção</option>
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+        </select>
+        <span asp-validation-for="Confirmado"></span>
+    </div>
+    <button type="submit">Confirmar</button>
+</form>

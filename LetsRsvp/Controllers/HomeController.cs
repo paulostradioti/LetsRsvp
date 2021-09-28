@@ -92,5 +92,24 @@ namespace LetsRsvp.Controllers
 
             return RedirectToAction("Confirmados");
         }
+
+
+        public IActionResult Remocao(int id)
+        {
+            var removendo = _repositorio.Confirmacoes.FirstOrDefault(x => x.Id == id);
+            if (removendo == null)
+                return RedirectToAction("Confirmados");
+
+            return View(removendo);
+        }
+
+        [HttpPost]
+        public IActionResult Remocao(Confirmacao confirmacao)
+        {
+            _repositorio.Remove(confirmacao);
+
+            return RedirectToAction("Confirmados");
+        }
+
     }
 }
